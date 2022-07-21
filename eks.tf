@@ -14,14 +14,21 @@ module "eks" {
   eks_managed_node_group_defaults = {
     disk_size      = 50
     instance_types = ["t2.medium"]
+    key_name = "devops2-02"
   }
 
   eks_managed_node_groups = {
-    blue = {}
+    blue = {
+      min_size     = 0
+      max_size     = 1
+      desired_size = 0
+
+      instance_types = ["t2.medium"]
+    }
     green = {
-      min_size     = 1
+      min_size     = 2
       max_size     = 2
-      desired_size = 1
+      desired_size = 2
 
       instance_types = ["t2.medium"]
     }
